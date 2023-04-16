@@ -35,13 +35,13 @@ const Post = ({ post, setCurrentId }) => {
         if(likes.length > 0) {
             return likes.find((like) => like === user?.result?._id) 
             ? (
-                <><ThumbUpAltIcon fontSize="small" />&nbsp;{likes.length > 2 ? `You and ${likes.length - 1} others` : `${likes.length} like${likes.length > 1 ? 's' : ''}` }</>
+                <><ThumbUpAltIcon fontSize="small" sx={{color: 'pink'}}/>&nbsp;{likes.length > 2 ? `${likes.length - 1}` : `${likes.length}` }</>
             ) : (
-                <><ThumbUpOffAltOutlined fontSize="small" />&nbsp;{likes.length} {likes.length === 1 ? 'Like' : 'Likes'}</>
+                <><ThumbUpOffAltOutlined fontSize="small" sx={{color: 'pink'}}/>&nbsp;{likes.length} </>
             );
         }
 
-        return <><ThumbUpOffAltOutlined fontSize="small" />&nbsp;Like</>;
+        return <><ThumbUpOffAltOutlined fontSize="large" sx={{color: 'pink'}}/></>;
     };
 
     const openPost = () => history.push(`/posts/${post._id}`)
