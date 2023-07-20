@@ -19,6 +19,8 @@ const Navbar = () => {
         history.push('/');
 
         setUser(null);
+
+        window.location.reload()
     };
 
     const handleClick = () => {

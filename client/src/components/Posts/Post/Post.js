@@ -73,7 +73,9 @@ const Post = ({ post, setCurrentId }) => {
                     View
                 </Button>
                 {(user?.result?._id === post?.creator) && (
-                    <Button size='small' color='primary' onClick={() => dispatch(deletePost(post._id))}>
+                    <Button size='small' color='primary' onClick={() => {
+                        dispatch(deletePost(post._id))
+                        window.location.reload()}}>
                         <DeleteIcon fontSize="small" />
                         Delete
                     </Button>

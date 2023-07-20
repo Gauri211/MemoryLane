@@ -37,18 +37,27 @@ export const getPosts = async (req, res) => {
 // PARAMS -> /posts/123 -> id = 123
 
 export const getPostsBySearch = async (req, res) => {
-    const { searchQuery, tags } = req.query
+    const { searchQuery, tags } = req.query;
 
     try {
         const title = new RegExp(searchQuery, 'i');
 
-        const posts = await PostMessage.find({ $or: [ { title }, { tags: { $in: tags.split(',') } }] })
+        let posts;
 
-        res.json({ data: posts });        
+        if (tags) {
+            // Split tags only if it's provided and not empty
+            posts = await PostMessage.find({ $or: [{ title }, { tags: { $in: tags.split(',') } }] });
+        } else {
+            // If tags are not provided or empty, search only by title
+            posts = await PostMessage.find({ title });
+        }
+
+        res.json({ data: posts });
     } catch (error) {
-        res.status(404).json( { message: error.message });
+        res.status(404).json({ message: error.message });
     }
-}
+};
+
 
 export const createPost = async (req, res) => {
     const post = req.body;

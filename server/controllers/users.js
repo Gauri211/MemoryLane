@@ -19,7 +19,7 @@ export const signin = async (req, res) => {
 
         res.status(200).json({ result: existingUser, token })
     } catch (error) {
-        res.status(500).json({ message: 'Somethinng went wrong' });
+        res.status(500).json({ message: 'Something went wrong' });
     }
 }
 
@@ -28,11 +28,11 @@ export const signup = async (req, res) => {
 
     try {
         const existingUser = await User.findOne({ email });
-
+        
         if(existingUser) return res.status(400).json({ message: "User already exists" });
-
+        
         if(password !== confirmPassword) return res.status(400).json({ message: "Password don't match" });
-
+        
         const hashedPassword = await bcrypt.hash(password, 12);
 
         const result = await User.create({ email, password: hashedPassword, name: `${firstname} ${lastname}` });
@@ -41,6 +41,6 @@ export const signup = async (req, res) => {
 
         res.status(200).json({ result: result, token })
     } catch (error) {
-        res.status(500).json({ message: 'Somethinng went wrong' });
+        res.status(500).json({ message: 'Something went wrong' });
     }
 }
