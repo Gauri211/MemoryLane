@@ -10,25 +10,24 @@ const auth = async (req, res, next) => {
         if (!authHeader) {
             return res.sendStatus(401); // Unauthorized
         }
-        if(authHeader !== null) {
-            const token = authHeader.split(' ')[1];
-            
-            const isCustomAuth = token.length < 500;
+        
+        const token = authHeader.split(' ')[1];
+        
+        const isCustomAuth = token.length < 500;
 
-            let decodedData;
+        let decodedData;
 
-            if(token && isCustomAuth) {
-                decodedData = jwt.verify(token, 'test');
+        if(token && isCustomAuth) {
+            decodedData = jwt.verify(token, 'test');
 
-                req.userId = decodedData?.id;
-            } else {
-                decodedData = jwt.decode(token);
+            req.userId = decodedData?.id;
+        } else {
+            decodedData = jwt.decode(token);
 
-                req.userId = decodedData?.sub;
-            }
-
-            next();
+            req.userId = decodedData?.sub;
         }
+
+        next();
     } catch (error) {
         console.log(error);
     }
