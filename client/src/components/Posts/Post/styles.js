@@ -2,10 +2,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles({
   media: {
-    height: 0,
-    paddingTop: '56.25%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    backgroundBlendMode: 'darken',
+    height: '200px',
+    margin: '25% 5% 0',
+    // backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    borderRadius: '10px'
   },
   border: {
     border: 'solid',
@@ -20,18 +20,18 @@ export default makeStyles({
     borderRadius: '15px',
     height: '100%',
     position: 'relative',
+    // backgroundColor: '#27282c',
+    // width: '300px'
   },
   overlay: {
     position: 'absolute',
-    top: '20px',
+    top: '15px',
     left: '20px',
-    color: 'white',
   },
   overlay2: {
     position: 'absolute',
-    top: '20px',
-    right: '20px',
-    color: 'white',
+    top: '15px',
+    right: '5px',
   },
   grid: {
     display: 'flex',
@@ -39,10 +39,11 @@ export default makeStyles({
   details: {
     display: 'flex',
     justifyContent: 'space-between',
-    margin: '20px',
+    margin: '5px 20px',
   },
   title: {
     padding: '0 16px',
+    fontSize: '18px',
   },
   cardActions: {
     padding: '0 16px 8px 16px',

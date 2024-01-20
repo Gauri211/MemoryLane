@@ -48,23 +48,23 @@ const Post = ({ post, setCurrentId }) => {
 
     return (
         <Card className={classes.card} raised elavation={6}>
-                <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
                 <div className={classes.overlay}>
-                    <Typography variant='h6'>{post.name}</Typography>
-                    <Typography variant='body2'>{moment(post.createdAt).fromNow()}</Typography>
+                    <Typography style={{fontSize: '16px'}}>{post.name}</Typography>
+                    <Typography style={{fontSize: '10px'}}>{moment(post.createdAt).fromNow()}</Typography>
                 </div>
                 <div className={classes.overlay2}>
                     <Button style={{color: 'white'}} size="small" onClick={() => setCurrentId(post._id)}>
                         <MoreHorizIcon fontSize="medium" />
                     </Button>
                 </div>
+                <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
                 <div className={classes.details}>
                     <Typography variant='body2' color='primary'>{post.tags.map((tag) => `#${tag} `)}</Typography>
                 </div>
-                <Typography className={classes.title} variant='h5' gutterBottom>{post.title}</Typography>
-                <CardContent>
+                <Typography className={classes.title} gutterBottom>{post.title}</Typography>
+                {/* <CardContent>
                     <Typography variant='body2' color='textSecondary' component='p'>{post.message}</Typography>
-                </CardContent>
+                </CardContent> */}
             <CardActions className={classes.cardActions}>
                 <Button size='small' color='primary' disabled={!user?.result} onClick={handleLike}>
                     <Likes />
@@ -73,7 +73,7 @@ const Post = ({ post, setCurrentId }) => {
                     View
                 </Button>
                 {(user?.result?._id === post?.creator) && (
-                    <Button size='small' color='primary' onClick={() => {
+                    <Button size='small' style={{color: '#b61122'}} onClick={() => {
                         dispatch(deletePost(post._id))
                         window.location.reload()}}>
                         <DeleteIcon fontSize="small" />
